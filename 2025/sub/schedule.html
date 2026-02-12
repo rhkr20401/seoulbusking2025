@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2025 서울거리공연 - 구석구석라이브</title>
+        <!-- meta -->
+        <meta name="title" content="2025 서울거리공연 '구석구석라이브'" />
+        <meta name="description" content="2025년 서울거리공연 '구석구석라이브' 공식 홈페이지" />
+        <meta property="og:image" content="https://seoulbusking.com/2025/img/bg.png">
+        <meta property="og:url" content="https://seoulbusking.com">
+        <meta property="og:type" content="website">
+        <link rel="icon" type="image/png" href="https://seoulbusking.com/favicon.ico"/>
+        <!-- css/js -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/GamtanRoadGamtan/GamtanRoadGamtan.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/style_sub.css">
+        <script src="https://kit.fontawesome.com/051ae6ca49.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="../js/js_main.js"></script>
+        <style>
+            /* 월 선택 스타일 */
+            .month-selector {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+            }
+            .month-selector a {
+                padding: 8px 15px;
+                margin: 5px;
+                background: #f5f5f5;
+                border-radius: 20px;
+                text-decoration: none;
+                color: #333;
+                transition: all 0.3s;
+                border: none;
+            }
+            .month-selector a.active {
+                background: #06b77d;
+                color: white;
+                font-weight: bold;
+                border: none;
+            }
+            .month-selector a:hover {
+                background: #06b77d;
+                color: white;
+                border: none;
+            }
+            
+            .schedule-loading {
+                text-align: center;
+                padding: 50px;
+                font-size: 18px;
+                color: #666;
+            }
+            .schedule-empty {
+                text-align: center;
+                padding: 50px;
+                font-size: 18px;
+                color: #666;
+            }
+            .location-info {
+                margin: 20px auto;
+                padding: 12px 15px;
+                background: #f9f9f9;
+                border-radius: 8px;
+                display: none;
+                border: 1px solid #e0e0e0;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                margin-bottom: 20px;
+                max-width: 80%;
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            .location-info h3 {
+                margin-bottom: 8px;
+                color: #06b77d;
+                font-weight: bold;
+                font-size: 16px;
+            }
+            .location-info p {
+                margin: 4px 0;
+            }
+            .location-info a {
+                display: inline-block;
+                margin-top: 8px;
+                padding: 4px 8px;
+                background: #06b77d;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 13px;
+            }
+            
+            /* 행사명 스타일 */
+            .event-name {
+                display: block;
+                margin-top: 5%;
+                color: #555;
+                font-size: 14px;
+                font-weight: normal;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                border-left: none;
+                padding-left: 0;
+                vertical-align: middle;
+                line-height: 1.1;
+                text-align: center;
+            }
+            .event-name svg {
+                fill: #06b77d;
+                margin-right: 4px;
+                width: 14px;
+                text-align: center;
+            }
+            .event-name.no-event {
+                color: #888;
+                font-style: italic;
+            }
+            .event-name.no-event i {
+                color: #999;
+            }
+
+            /* 세부장소명 스타일 */
+            .location_detail_name {
+                display: block;
+                margin-top: 0;
+                color: #555;
+                font-size: 14px;
+                font-weight: normal;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                border-left: none;
+                padding-left: 0;
+                vertical-align: middle;
+                line-height: 1.1;
+                text-align: center;
+            }
+            .location_detail_name svg {
+                fill: #06b77d;
+                margin-right: 4px;
+                width: 12px;
+                text-align: center;
+            }
+            .location_detail_name.no-event {
+                color: #888;
+                font-style: italic;
+            }
+            .location_detail_name.no-event i {
+                color: #999;
+            }
+            
+            /* 시간 스타일 */
+            #schedule-table table td p span:first-child {
+                display: inline;
+                color: #06b77d;
+                font-weight: bold;
+                font-size: 12px;
+                margin-bottom: 3px;
+                border-bottom: none;
+                padding-bottom: 0;
+                text-align: center;
+                background-color: transparent;
+                padding: 0;
+                border-radius: 0;
+                margin-right: 0;
+                min-width: auto;
+                line-height: 1.1;
+            }
+            
+            /* 테이블 스타일 */
+            #schedule-table table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            
+            #schedule-table table th {
+                background-color: #fafafa;
+                padding: 8px 5px;
+                border-radius: 0;
+                border: 1px solid #eee;
+                font-weight: normal;
+            }
+            
+            #schedule-table table td {
+                vertical-align: top;
+                min-width: 80px;
+                max-width: 120px;
+                padding: 10px 8px;
+                background-color: #fff;
+                border-radius: 0;
+                border: 1px solid #eee;
+            }
+            
+            #schedule-table table td.empty-cell {
+                background-color: #fdfdfd;
+                color: #ddd;
+                text-align: center;
+                font-size: 14px;
+                border: 1px solid #eee;
+            }
+            
+            #schedule-table table td p {
+                margin-bottom: 8px;
+                padding-bottom: 6px;
+                border-bottom: 1px dashed #eee;
+                background-color: transparent;
+                padding: 4px 6px;
+                border-radius: 0;
+                margin-top: 6px;
+                line-height: 1.2;
+            }
+            #schedule-table table td p:first-of-type {
+                margin-top: 6px;
+            }
+            #schedule-table table td p:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+            #schedule-table table td b {
+                display: block;
+                margin-bottom: 8px;
+                color: #333;
+                font-weight: bold;
+                background-color: #f5f5f5;
+                padding: 5px 8px;
+                border-radius: 0;
+                font-size: 14px;
+                text-align: center;
+                margin-top: 12px;
+                border-bottom: 1px solid #ddd;
+                border-top: none;
+            }
+            #schedule-table table td b:first-child {
+                margin-top: 0;
+                border-top: none;
+            }
+            
+            /* 반응형 스타일 */
+            @media (max-width: 768px) {
+                #schedule-table table {
+                    font-size: 13px;
+                }
+                #schedule-table table td {
+                    padding: 5px;
+                    min-width: 70px;
+                }
+                #schedule-table table td b {
+                    font-size: 13px;
+                    padding: 4px 6px;
+                }
+                #schedule-table table td p {
+                    padding: 5px;
+                }
+                .event-name {
+                    font-size: 12px;
+                    max-width: 80%;
+                }
+                #schedule-table table td p span:first-child {
+                    font-size: 12px;
+                }
+            }
+            
+            /* 장소 탭 스타일 */
+            .schedule_tab {
+                margin-top: 10px;
+                margin-bottom: 50px;
+                text-align: center;
+                display: block;
+            }
+            
+            .schedule_tab a {
+                margin: 0 30px 0 30px;
+                font-weight: 700;
+                line-height: 40px;
+                background: none;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+            }
+            
+            .schedule_tab a:hover {
+                border-bottom: 1px solid #1c3442;
+                background: none;
+                color: #333;
+            }
+            
+            .schedule_tab a.on {
+                color: #1c3442;
+                border-bottom: 1px solid #1c3442;
+                padding-bottom: 5px;
+                background: none;
+                font-weight: 700;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                // 현재 연월 구하기 (표시용)
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth() + 1;
+                
+                // URL 파라미터에서 연월 및 장소 ID 가져오기
+                const urlParams = new URLSearchParams(window.location.search);
+                let selectedYear = urlParams.get('year') || year;
+                let selectedMonth = urlParams.get('month') || month;
+                const selectedLocationId = urlParams.get('location_id');
+                
+                // 연월 형식 맞추기
+                selectedYear = parseInt(selectedYear);
+                selectedMonth = parseInt(selectedMonth);
+                
+                // 현재 연월 표시 업데이트
+                updateTitle(selectedYear, selectedMonth);
+                
+                // 일정이 있는 달 확인 후 월 선택자 설정
+                loadAvailableMonths(selectedYear, selectedMonth, selectedLocationId);
+                
+                // 장소 목록 로드 및 표시
+                loadLocations(selectedYear, selectedMonth, selectedLocationId);
+                
+                // 일정 테이블 로드
+                loadSchedules(selectedYear, selectedMonth, selectedLocationId);
+                
+                // 월 선택자 클릭 이벤트
+                $(document).on('click', '.month-selector a', function(e) {
+                    e.preventDefault();
+                    const monthNum = parseInt($(this).data('month'));
+                    
+                    // 현재 활성화된 장소 확인
+                    const currentActiveLocationId = $(".schedule_tab a.on").not(".all").data('location-id');
+                    
+                    // URL 파라미터 업데이트
+                    let url = `schedule.html?year=${selectedYear}&month=${monthNum}`;
+                    if(currentActiveLocationId) {
+                        url += `&location_id=${currentActiveLocationId}`;
+                    }
+                    
+                    window.location.href = url;
+                });
+                
+                // 장소 탭 클릭 이벤트
+                $(document).on('click', '.schedule_tab a', function (e) {
+                    e.preventDefault();
+                    
+                    $(".schedule_tab a").removeClass("on");
+                    $(this).addClass("on");
+                    
+                    // 전체 보기
+                    if($(this).hasClass('all')) {
+                        // 월 선택 유지하면서 장소 필터 제거
+                        let url = `schedule.html`;
+                        
+                        // 활성화된 경우 월 선택 파라미터 추가
+                        if($('.month-selector').length > 0) {
+                            url += `?year=${selectedYear}&month=${selectedMonth}`;
+                        }
+                        
+                        window.location.href = url;
+                        return;
+                    }
+                    
+                    const locationId = $(this).data('location-id');
+                    
+                    // URL 파라미터 업데이트
+                    let url = `schedule.html?location_id=${locationId}`;
+                    
+                    // 활성화된 경우 월 선택 파라미터 추가
+                    if($('.month-selector').length > 0) {
+                        url = `schedule.html?year=${selectedYear}&month=${selectedMonth}&location_id=${locationId}`;
+                    }
+                    
+                    window.location.href = url;
+                });
+                
+                // 제목 업데이트 함수
+                function updateTitle(year, month) {
+                    $('#schedule-title').text(`${month}월 공연 일정`);
+                }
+                
+                // 월 선택자 업데이트 함수 (일정이 있는 달만 표시)
+                function updateMonthSelector(year, month, availableMonths) {
+                    /*
+                     * 월 선택기 활성화/비활성화 설정
+                     * 아래 코드의 주석을 해제하면 월 선택 기능이 활성화되고
+                     * 주석 처리하면 월 선택 기능이 비활성화됩니다.
+                     */
+                    $('.month-selector').empty();
+                    
+                    // 일정이 있는 달만 표시
+                    availableMonths.forEach(function(monthNum) {
+                        const isActive = monthNum === month ? 'active' : '';
+                        $('.month-selector').append(`
+                            <a href="#" data-month="${monthNum}" class="${isActive}">${monthNum}월</a>
+                        `);
+                    });
+                    
+                    // 현재 선택된 달이 사용 가능한 달 목록에 없으면 가장 가까운 달 선택
+                    if (availableMonths.length > 0 && !availableMonths.includes(month)) {
+                        // 현재 월 기준으로 가장 가까운 미래 월 찾기
+                        const futureMonths = availableMonths.filter(m => m >= month);
+                        if (futureMonths.length > 0) {
+                            // 미래에 있는 가장 가까운 월 선택
+                            const closestMonth = Math.min(...futureMonths);
+                            let url = `schedule.html?year=${year}&month=${closestMonth}`;
+                            if(selectedLocationId) {
+                                url += `&location_id=${selectedLocationId}`;
+                            }
+                            window.location.href = url;
+                        } else {
+                            // 미래 월이 없으면 가장 늦은 월 선택
+                            const latestMonth = Math.max(...availableMonths);
+                            let url = `schedule.html?year=${year}&month=${latestMonth}`;
+                            if(selectedLocationId) {
+                                url += `&location_id=${selectedLocationId}`;
+                            }
+                            window.location.href = url;
+                        }
+                    }
+                }
+                
+                // 사용 가능한 월 로드 함수
+                function loadAvailableMonths(year, month, locationId) {
+                    // 로딩 메시지 표시
+                    $('.month-selector').html('<div style="text-align:center;">월 정보를 불러오는 중입니다...</div>');
+                    
+                    // 효율적인 방법: 장소 목록 API를 통해 특정 장소에서 공연이 있는 달 정보를 가져옴
+                    $.ajax({
+                        url: '../adm/get_schedules.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            year: year,
+                            getLocations: true
+                        },
+                        success: function(data) {
+                            // API 응답에서 일정이 있는 달 추출
+                            let months = [];
+                            
+                            // 일단 현재 선택된 월 데이터는 가져옴
+                            const monthStr = String(month).padStart(2, '0');
+                            const date = `${year}${monthStr}`;
+                            
+                            // 장소 데이터가 있으면 해당 월에 일정이 있다는 의미
+                            if (Array.isArray(data) && data.length > 0) {
+                                console.log('장소 데이터 있음 - 현재 월에 일정 있음');
+                                // 현재 월 추가
+                                if (!months.includes(month)) {
+                                    months.push(month);
+                                }
+                                
+                                // 연내 다른 월 확인 (1~12월)
+                                checkOtherMonths(year, month, months, locationId);
+                            } else {
+                                console.log('장소 데이터 없음 - 현재 월에 일정 없음');
+                                // 연내 다른 월 확인 (1~12월)
+                                checkOtherMonths(year, month, months, locationId);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("월 정보를 불러오는 중 오류가 발생했습니다:", error);
+                            console.log(xhr.responseText);
+                            
+                            // 오류 발생 시 현재 월만 표시
+                            updateMonthSelector(year, month, [month]);
+                        }
+                    });
+                }
+                
+                // 다른 월에 일정이 있는지 순차적으로 확인
+                function checkOtherMonths(year, currentMonth, months, locationId) {
+                    const maxConcurrentRequests = 2; // 동시 요청 수 제한
+                    let activeRequests = 0;
+                    let monthQueue = [];
+                    let completedMonths = 0;
+                    
+                    // 현재 월을 제외한 1~12월 배열 생성
+                    for (let i = 1; i <= 12; i++) {
+                        if (i !== currentMonth) {
+                            monthQueue.push(i);
+                        }
+                    }
+                    
+                    // 다음 월 처리 함수
+                    function processNextMonth() {
+                        if (monthQueue.length === 0 && activeRequests === 0) {
+                            // 모든 월 처리 완료
+                            finishMonthCheck();
+                            return;
+                        }
+                        
+                        // 최대 동시 요청 수에 도달하지 않고 대기 중인 월이 있는 경우
+                        while (activeRequests < maxConcurrentRequests && monthQueue.length > 0) {
+                            const nextMonth = monthQueue.shift();
+                            checkMonth(nextMonth);
+                        }
+                    }
+                    
+                    // 특정 월 확인 함수
+                    function checkMonth(monthNum) {
+                        activeRequests++;
+                        
+                        const monthStr = String(monthNum).padStart(2, '0');
+                        const date = `${year}${monthStr}`;
+                        
+                        let apiData = { date: date, getLocations: true };
+                        if (locationId) {
+                            apiData.location_id = locationId;
+                        }
+                        
+                        $.ajax({
+                            url: '../adm/get_schedules.php',
+                            type: 'GET',
+                            dataType: 'json',
+                            data: apiData,
+                            success: function(data) {
+                                // 장소 데이터가 있으면 해당 월에 일정이 있다는 의미
+                                if (Array.isArray(data) && data.length > 0) {
+                                    console.log(`${monthNum}월에 일정 있음`);
+                                    if (!months.includes(monthNum)) {
+                                        months.push(monthNum);
+                                    }
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(`${monthNum}월 정보를 불러오는 중 오류가 발생했습니다:`, error);
+                            },
+                            complete: function() {
+                                activeRequests--;
+                                completedMonths++;
+                                
+                                // 다음 월 처리
+                                processNextMonth();
+                            }
+                        });
+                    }
+                    
+                    // 모든 월 체크 완료 후 처리
+                    function finishMonthCheck() {
+                        console.log('모든 월 확인 완료', months);
+                        
+                        // 일정이 있는 달 순서대로 정렬
+                        months.sort((a, b) => a - b);
+                        
+                        // 일정이 있는 달이 없으면 현재 월만 표시
+                        if (months.length === 0) {
+                            months.push(currentMonth);
+                        }
+                        
+                        // 월 선택기 업데이트
+                        updateMonthSelector(year, currentMonth, months);
+                    }
+                    
+                    // 월 체크 시작
+                    processNextMonth();
+                }
+                
+                // 장소 목록 로드 함수
+                function loadLocations(year, month, selectedLocationId) {
+                    // YYYYMM 형식으로 날짜 생성
+                    const monthStr = String(month).padStart(2, '0');
+                    const date = `${year}${monthStr}`;
+                    
+                    console.log('장소 목록 로드 호출 - 선택된 장소 ID:', selectedLocationId);
+                    
+                    $.ajax({
+                        url: '../adm/get_schedules.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            date: date,
+                            getLocations: true
+                        },
+                        success: function(data) {
+                            console.log('장소 목록 로드 성공:', data);
+                            // 장소 탭 초기화
+                            $('.schedule_tab').empty();
+                            
+                            // 전체 보기 옵션 추가
+                            const allClass = !selectedLocationId ? 'on all' : 'all';
+                            $('.schedule_tab').append(`<a href="#" class="${allClass}">전체</a>`);
+                            
+                            // 각 장소별 링크 추가
+                            if (Array.isArray(data)) {
+                                data.forEach(function(location) {
+                                    const activeClass = selectedLocationId == location.id ? 'on' : '';
+                                    $('.schedule_tab').append(`
+                                        <a href="#" data-location-id="${location.id}" class="${activeClass}">${location.name}</a>
+                                    `);
+                                    
+                                    // 선택된 장소의 정보 가져오기
+                                    if(selectedLocationId == location.id) {
+                                        console.log('선택된 장소 발견, 정보 로드 호출:', location.id);
+                                        loadLocationInfo(location.id);
+                                    }
+                                });
+                                
+                                // 선택된 장소가 없는 경우 장소 정보 숨기기
+                                if(!selectedLocationId) {
+                                    $('.location-info').hide();
+                                }
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("장소 목록을 불러오는 중 오류가 발생했습니다:", error);
+                            console.log(xhr.responseText);
+                            $('.schedule_tab').html('<p>장소 목록을 불러오는 중 오류가 발생했습니다.</p>');
+                        }
+                    });
+                }
+                
+                // 일정 로드 함수
+                function loadSchedules(year, month, locationId) {
+                    // YYYYMM 형식으로 날짜 생성
+                    const monthStr = String(month).padStart(2, '0');
+                    const date = `${year}${monthStr}`;
+                    
+                    // 로딩 표시
+                    $('#schedule-table').html('<div class="schedule-loading">일정을 불러오는 중입니다...</div>');
+                    
+                    let apiUrl = '../adm/get_schedules.php';
+                    let apiData = { date: date };
+                    
+                    if(locationId) {
+                        apiData.location_id = locationId;
+                    }
+                    
+                    console.log('API 요청 데이터:', apiData);
+                    
+                    $.ajax({
+                        url: apiUrl,
+                        type: 'GET',
+                        dataType: 'json',
+                        data: apiData,
+                        success: function(data) {
+                            console.log('API 응답 데이터:', data);
+                            
+                            // 선택한 장소의 일정이 없는 경우
+                            if (locationId && (!data || !data.success || !data.schedules || data.schedules.length === 0)) {
+                                console.log('선택한 장소의 일정이 없습니다. 전체 일정을 표시합니다.');
+                                
+                                // 전체 일정 불러오기
+                                $.ajax({
+                                    url: apiUrl,
+                                    type: 'GET',
+                                    dataType: 'json',
+                                    data: { date: date },
+                                    success: function(allData) {
+                                        // 전체 일정 표시
+                                        renderScheduleTable(allData, year, month);
+                                        
+                                        // 장소 탭에서 '전체' 탭 활성화
+                                        $(".schedule_tab a").removeClass("on");
+                                        $(".schedule_tab a.all").addClass("on");
+                                        
+                                        // URL 파라미터에서 장소 ID 제거
+                                        let newUrl = `schedule.html?year=${year}&month=${month}`;
+                                        history.replaceState(null, '', newUrl);
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error("전체 일정을 불러오는 중 오류가 발생했습니다:", error);
+                                        $('#schedule-table').html('<div class="schedule-empty">일정을 불러오는 중 오류가 발생했습니다.</div>');
+                                    }
+                                });
+                            } else {
+                                // 일정 데이터가 있거나 전체 일정을 표시하는 경우
+                                renderScheduleTable(data, year, month);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("일정을 불러오는 중 오류가 발생했습니다:", error);
+                            console.log(xhr.responseText);
+                            $('#schedule-table').html('<div class="schedule-empty">일정을 불러오는 중 오류가 발생했습니다.</div>');
+                        }
+                    });
+                }
+                
+                // 장소 정보 로드 함수
+                function loadLocationInfo(locationId) {
+                    console.log('장소 정보 로딩 시작 - 장소 ID:', locationId);
+                    
+                    $.ajax({
+                        url: '../adm/get_location_info.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: { id: locationId },
+                        success: function(data) {
+                            console.log('장소 정보 로드 성공:', data);
+                            if(data && data.id) {
+                                // 장소 정보 HTML 업데이트
+                                $('.location-info').html(`
+                                    <h3>${data.name}</h3>
+                                    <p><strong>교통정보:</strong> ${data.station_info || '정보 없음'}</p>
+                                    <p><strong>주소:</strong> ${data.address || '정보 없음'}</p>
+                                    ${data.map_link ? `<a href="${data.map_link}" target="_blank">지도 보기</a>` : ''}
+                                `).show();
+                                
+                                console.log('장소 정보 HTML 업데이트 완료');
+                            } else {
+                                console.warn('장소 정보 불완전: ', data);
+                                $('.location-info').hide();
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('장소 정보 로드 오류:', error);
+                            console.log('오류 응답:', xhr.responseText);
+                            $('.location-info').hide();
+                        }
+                    });
+                }
+                
+                // 일정 테이블 렌더링 함수
+                function renderScheduleTable(data, year, month) {
+                    // 해당 월의 마지막 날짜 구하기
+                    const lastDay = new Date(year, month, 0).getDate();
+                    
+                    // 해당 월의 첫 날짜의 요일 구하기 (0: 일요일, 6: 토요일)
+                    const firstDayOfMonth = new Date(year, month - 1, 1).getDay();
+                    
+                    // 테이블 시작
+                    let tableHtml = `
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>일</th>
+                                    <th>월</th>
+                                    <th>화</th>
+                                    <th>수</th>
+                                    <th>목</th>
+                                    <th>금</th>
+                                    <th>토</th>
+                                </tr>
+                    `;
+                    
+                    // 날짜 셀 생성
+                    let dayCount = 1;
+                    
+                    // 현재 날짜 구하기 (오늘 날짜 표시용)
+                    const today = new Date();
+                    const currentYear = today.getFullYear();
+                    const currentMonth = today.getMonth() + 1;
+                    const currentDay = today.getDate();
+                    
+                    // 전체 주차 반복 (최대 6주)
+                    for (let weekIdx = 0; weekIdx < 6; weekIdx++) {
+                        // 날짜가 월의 마지막 날을 넘어가면 중단
+                        if (dayCount > lastDay) break;
+                        
+                        // 날짜 행 시작
+                        let dateRow = '<tr>';
+                        // 일정 행 시작
+                        let contentRow = '<tr>';
+                        
+                        // 요일 반복 (0: 일요일 ~ 6: 토요일)
+                        for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
+                            // 첫 주이고, 현재 요일이 첫 날의 요일보다 작으면 빈 셀
+                            // 또는 날짜가 마지막 날을 넘어가면 빈 셀
+                            if ((weekIdx === 0 && dayOfWeek < firstDayOfMonth) || (dayCount > lastDay)) {
+                                dateRow += '<th></th>';
+                                contentRow += '<td class="empty-cell" valign="top">-</td>';
+                            } else {
+                                // 요일에 따른 색상 적용 (일요일: 빨간색, 토요일: 파란색)
+                                let dayStyle = '';
+                                if (dayOfWeek === 0) dayStyle = ' style="color:red"';
+                                else if (dayOfWeek === 6) dayStyle = ' style="color:blue"';
+                                
+                                // 날짜 셀 추가
+                                dateRow += `<th${dayStyle}>${dayCount}일(${['일', '월', '화', '수', '목', '금', '토'][dayOfWeek]})</th>`;
+                                
+                                // 해당 날짜의 일정 찾기
+                                let currentDate = `${year}-${String(month).padStart(2, '0')}-${String(dayCount).padStart(2, '0')}`;
+                                let schedules = [];
+                                
+                                if (data && data.success && data.schedules) {
+                                    // 해당 날짜의 일정만 필터링
+                                    schedules = data.schedules.filter(function(schedule) {
+                                        return schedule.date === currentDate;
+                                    });
+                                }
+                                
+                                // 일정 내용 생성
+                                let scheduleHtml = '';
+                                
+                                if (schedules && schedules.length > 0) {
+                                    // 장소별로 그룹화
+                                    const placeGroups = {};
+                                    
+                                    schedules.forEach(function(schedule) {
+                                        if (!placeGroups[schedule.place]) {
+                                            placeGroups[schedule.place] = [];
+                                        }
+                                        placeGroups[schedule.place].push(schedule);
+                                    });
+                                    
+                                    // 각 장소 그룹 렌더링
+                                    for (const place in placeGroups) {
+                                        scheduleHtml += `<b>${place}</b>`;
+                                        
+                                        // 해당 장소의 시간별 일정
+                                        placeGroups[place].forEach(function(schedule) {
+                                            let genreText = schedule.genre && schedule.genre.trim() !== ''
+                                                ? `<span style="color:#000; font-weight:400;"> (${schedule.genre})</span>` : '';
+                                                
+                                            let eventName = schedule.event_name && schedule.event_name.trim() !== '' 
+                                                ? `<div class="event-name"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7l0 72 0 264c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L448 147 192 223.8 192 432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L128 200l0-72c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z"/></svg>${schedule.event_name}</div>` 
+                                                : '';
+
+                                            let locationDetailName = schedule.location_detail_name && schedule.location_detail_name.trim() !== '' 
+                                                ? `<div class="location_detail_name"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>${schedule.location_detail_name}</div>` 
+                                                : '';
+
+                                                if (schedule.is_active === 0 || schedule.is_active === "0") {
+                                                    let cancelText = schedule.cancel_reason ? schedule.cancel_reason : "공연 취소";
+                                                    scheduleHtml += `<p style="color:#999; text-decoration:line-through;">
+                                                        <span style="color:#ff4500;">(${cancelText})</span>
+                                                        ${schedule.time_start}~${schedule.time_end}${genreText}
+                                                        ${locationDetailName}
+                                                        ${eventName}
+                                                    </p>`;
+                                                } else {
+                                                    scheduleHtml += `<p>
+                                                        <span>${schedule.time_start}~${schedule.time_end}${genreText}</span>
+                                                        ${locationDetailName}
+                                                        ${eventName}
+                                                    </p>`;
+                                                }
+                                        });
+
+                                    }
+                                } else {
+                                    scheduleHtml = '-';
+                                }
+                                
+                                contentRow += `<td valign="top">${scheduleHtml}</td>`;
+                                
+                                // 날짜 증가
+                                dayCount++;
+                            }
+                        }
+                        
+                        // 행 종료
+                        dateRow += '</tr>';
+                        contentRow += '</tr>';
+                        
+                        // 테이블에 행 추가
+                        tableHtml += dateRow + contentRow;
+                    }
+                    
+                    // 테이블 종료
+                    tableHtml += '</tbody></table>';
+                    
+                    // 테이블 표시
+                    $('#schedule-table').html(tableHtml);
+                    
+                    // 데이터가 비어있는 경우 안내 메시지 추가
+                    if (!data || !data.success || !data.schedules || data.schedules.length === 0) {
+                        $('#schedule-table').append('<div class="schedule-empty">해당 월에 예정된 공연 일정이 없습니다.</div>');
+                    }
+                }
+            });
+        </script>
+    </head>
+<body>
+    <div id="header"></div>
+    <script>
+        fetch('../../header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                initSidebar();
+            });
+    
+        function initSidebar() {
+            const toggleBtn = document.querySelector('.navbar_toggleBtn svg');
+            const closeBtn = document.querySelector('.sidebar_closeBtn svg');
+            const sidebar = document.querySelector('.sidebar');
+    
+            if (toggleBtn && closeBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                });
+    
+                closeBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            }
+        }
+    </script>
+
+    <!-- sub_banner -->
+    <section id="sub_banner">
+        <img src="../img/logo.png" class="sub_logo">
+    </section>
+
+    <!-- sub_content -->
+    <section id="sub_section1" class="schedule">
+        <h1><span id="schedule-title">공연 일정</span></h1>
+        <p style="color:red; text-align:center; margin-top: -1%;">※ 공연 일정은 공연팀 개인 사유 / 공연장소 운영 / 기상상황 등으로 변경 및 취소 될수 있습니다.</p>
+
+        <!-- 월 선택기 (주석 처리로 켜고 끌 수 있음) -->
+        <div class="month-selector">
+            <!-- JavaScript에서 동적으로 생성됩니다 -->
+        </div>
+
+        <!-- 장소 필터 (카테고리) -->
+        <div class="schedule_tab">
+            <!-- JavaScript에서 동적으로 생성됩니다 -->
+        </div>
+
+        <!-- 선택된 장소 정보 -->
+        <div class="location-info">
+            <!-- 선택된 장소가 있으면 표시됩니다 -->
+        </div>
+
+        <!-- 일정 테이블 -->
+        <div id="schedule-table">
+            <div class="schedule-loading">일정을 불러오는 중입니다...</div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer id="footer">
+        <div class="footer_text">
+            <h3>서울거리공연 운영 사무국 <br>
+                ✉ 2025seoulbusking@gmail.com <br><b>※문의시간 : 09시~18시(평일) / 12시~13시(점심시간 제외)</b></h3>
+            <p>서울거리공연 (c)seoulbusking. All rights reserved.</p>
+        </div>
+        <div class="footer_icon">
+            <button onclick="document.location.href='mailto:2025seoulbusking@gmail.com'" class="footer_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+            </button>
+        </div>
+     </footer>
+
+</body>
+</html>

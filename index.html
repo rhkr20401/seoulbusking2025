@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 서울거리공연 - 구석구석라이브</title>
+    <!-- meta -->
+    <meta name="title" content="2025 서울거리공연 '구석구석라이브'" />
+    <meta name="description" content="2025년 서울거리공연 '구석구석라이브' 공식 홈페이지" />
+    <meta property="og:image" content="https://seoulbusking.com/2025/img/bg.png">
+    <meta property="og:url" content="https://seoulbusking.com">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="https://seoulbusking.com/favicon.ico"/>
+    <!-- css/js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/GamtanRoadGamtan/GamtanRoadGamtan.css" type="text/css"/>
+    <link rel="stylesheet" href="2025/css/reset.css">
+    <link rel="stylesheet" href="2025/css/header.css">
+    <link rel="stylesheet" href="2025/css/style_main.css">
+    <script src="https://kit.fontawesome.com/051ae6ca49.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="2025/js/js_main.js"></script>
+    <!-- 네이버 -->
+    <meta name="naver-site-verification" content="949040e6d1aa9ca4c01a55c9f021b7d81d83cc1a" />
+    <style>
+        .section2_btn {
+          display: flex;
+          flex-direction: column;
+          align-items: center; 
+          justify-content: center;
+          color: white;    
+          font-weight: bold;
+          background-color: #1f3640; 
+          width: 200px;
+          padding: 20px;
+          border-radius: 8px;    
+        }
+        .section2_btn svg {
+          width: 40px; 
+          height: 40px;
+          margin-bottom: 10px; 
+          fill: white;
+        }
+      </style>
+</head>
+<body>
+    <div id="header"></div>
+    <script>
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                initSidebar();
+            });
+    
+        function initSidebar() {
+            const toggleBtn = document.querySelector('.navbar_toggleBtn svg');
+            const closeBtn = document.querySelector('.sidebar_closeBtn svg');
+            const sidebar = document.querySelector('.sidebar');
+    
+            if (toggleBtn && closeBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                });
+    
+                closeBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            }
+        }
+    </script>
+    
+
+
+    <!-- main -->
+    <section id="section1">
+        <img src="2025/img/bg_logo.png" class="main_logo layeritem animate__animated animate__pulse">
+        <div class="logo1"><img src="2025/img/s1.png" alt="로고1"></div>
+        <div class="logo2"><img src="2025/img/s3.png" alt="로고3"></div>
+        <!-- <button onclick="window.open('https://seoulbusking.com/2025/sub/busker.html')" class="section1_btn">
+            <i></i>
+            2025 나도 버스커 페스티벌 경연대회 참가자 접수</button> -->
+    </section>
+
+    <!-- banner -->
+    <section id="section2">
+        <div class="banner_nav">
+            <button onclick="location.href='2025/sub/about.html'" class="section2_btn">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M470.38 1.52c-5.5-2.4-11.7-2.6-17.3-.7L182.5 97.2c-12.2 4.2-20.5 15.8-20.5 28.7v237.5c-7.6-2.7-15.7-4.4-24-4.4-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72V212.1l192-66.2v153.5c-7.6-2.7-15.7-4.4-24-4.4-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72V32c0-11.5-6.7-22-17.1-26.5z"/>
+                </svg>
+                2025 서울거리공연
+            </button>
+            <button onclick="location.href='2025/sub/team.html'" class="section2_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M192 0C139 0 96 43 96 96l0 160c0 53 43 96 96 96s96-43 96-96l0-160c0-53-43-96-96-96zM64 216c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c0 89.1 66.2 162.7 152 174.4l0 33.6-48 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l72 0 72 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-48 0 0-33.6c85.8-11.7 152-85.3 152-174.4l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c0 70.7-57.3 128-128 128s-128-57.3-128-128l0-40z"/>
+                </svg>
+                공연단 소개
+            </button>
+            <button onclick="location.href='2025/sub/schedule.html'" class="section2_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                   <path d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z"/>
+                </svg>
+                이달의 공연
+            </button>
+            <button onclick="location.href='2025/sub/location.html'" class="section2_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                </svg>
+                공연장 안내
+            </button>
+            <button onclick="location.href='2025/sub/gallery.html'" class="section2_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path d="M160 32c-35.3 0-64 28.7-64 64l0 224c0 35.3 28.7 64 64 64l352 0c35.3 0 64-28.7 64-64l0-224c0-35.3-28.7-64-64-64L160 32zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320l-144 0-48 0-80 0c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120L0 344c0 75.1 60.9 136 136 136l320 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-320 0c-48.6 0-88-39.4-88-88l0-224z"/>
+                </svg>
+                공연 갤러리
+            </button>
+        </div>
+    </section>
+
+
+
+    <!-- footer -->
+     <footer id="footer">
+        <div class="footer_text">
+            <h3>서울거리공연 운영 사무국 <br>
+                ✉ 2025seoulbusking@gmail.com <br><b>※문의시간 : 09시~18시(평일) / 12시~13시(점심시간 제외)</b></h3>
+            <p>서울거리공연 (c)seoulbusking. All rights reserved.</p>
+        </div>
+        <div class="footer_icon">
+            <button onclick="document.location.href='mailto:2025seoulbusking@gmail.com'" class="footer_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+            </button>
+        </div>
+     </footer>
+
+    <!-- 팝업 -->
+    <script>
+        // 쿠키 읽기 함수
+        function getCookie(name) {
+            let cookies = document.cookie.split("; "); // 쿠키 문자열을 배열로 변환
+            for (let i = 0; i < cookies.length; i++) {
+                let [key, value] = cookies[i].split("="); // 쿠키 key=value 분리
+                if (key === name) {
+                    return decodeURIComponent(value); // 쿠키 값 반환
+                }
+            }
+            return null;
+        }
+
+        // 쿠키 설정 함수
+        function setCookie(name, value, days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // days를 밀리초로 변환
+            document.cookie = `${name}=${encodeURIComponent(value)}; path=/; expires=${date.toUTCString()};`;
+        }
+
+        // 팝업 닫기 및 쿠키 저장
+        function popupClose() {
+            setCookie("popupDayClose", "true", 1);
+            document.getElementById("popup").style.display = 'none';
+        }
+
+        // 단순 팝업 닫기
+        function popupCloses() {
+            document.getElementById("popup").style.display = 'none';
+        }
+
+        // 페이지 로드 시 쿠키 확인하여 팝업 표시 여부 결정
+        window.addEventListener("DOMContentLoaded", function () {
+            if (getCookie("popupDayClose") === "true") {
+                document.getElementById("popup").style.display = 'none';
+            }
+        });
+    </script>
+    <!-- 팝업 html -->
+    <!-- <div id="popup">
+        <div class="popup">
+                <a href="https://seoulbusking.com/2025/sub/schedule.html"><img src="2025/img/popup/popup_7.png" usemap="#popup"></a>
+            <a style="cursor:pointer;" onclick="popupClose();"><p>오늘 하루 열지 않음</p></a>
+            <a style="cursor:pointer;" onclick="popupCloses();"><p class="left">닫기</p></a>
+        </div>
+        <div class="popupbg"></div>
+    </div> -->
+
+
+</body>
+</html>

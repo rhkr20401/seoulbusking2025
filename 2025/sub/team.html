@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2025 서울거리공연 - 구석구석라이브</title>
+        <!-- meta -->
+        <meta name="title" content="2025 서울거리공연 '구석구석라이브'" />
+        <meta name="description" content="2025년 서울거리공연 '구석구석라이브' 공식 홈페이지" />
+        <meta property="og:image" content="https://seoulbusking.com/2025/img/bg.png">
+        <meta property="og:url" content="https://seoulbusking.com">
+        <meta property="og:type" content="website">
+        <link rel="icon" type="image/png" href="https://seoulbusking.com/favicon.ico"/>
+        <!-- css/js -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/GamtanRoadGamtan/GamtanRoadGamtan.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/style_sub.css">
+        <script src="https://kit.fontawesome.com/051ae6ca49.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="../js/js_main.js"></script>
+    </head>
+<body>
+    <div id="header"></div>
+    <script>
+        fetch('../../header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                initSidebar();
+            });
+    
+        function initSidebar() {
+            const toggleBtn = document.querySelector('.navbar_toggleBtn svg');
+            const closeBtn = document.querySelector('.sidebar_closeBtn svg');
+            const sidebar = document.querySelector('.sidebar');
+    
+            if (toggleBtn && closeBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                });
+    
+                closeBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            }
+        }
+    </script>
+    
+    <section id="sub_banner">
+        <img src="../img/logo.png" class="sub_logo">
+    </section>
+    
+    <section id="sub_section1">
+        <h1><span>2025 서울거리공연 구석구석라이브 공연단 소개</span></h1>
+
+        <div id="team" class="wrap"></div>
+
+        <!-- 검색창 추가 -->
+        <div id="team-search-container">
+            <input type="text" id="team-search-input" placeholder="팀명을 입력하세요">
+            <button id="team-search-button"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <!-- 페이지네이션 추가 -->
+        <div id="team-pagination"></div>
+
+        <!-- 팝업 컨테이너 (초기 상태: 숨김) -->
+        <div id="teamPopup" class="popup">
+            <div class="popup-content">
+                <div id="popup-content-area"></div>
+            </div>
+            <span class="close-popup">&times;</span> <!-- 팝업 바깥으로 이동 -->
+        </div>
+
+    </section>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let teamsData = [];
+            let currentPage = 1;
+            const itemsPerPage = 8;
+            const maxPageNumbers = 5;
+        
+            // 팀 데이터 가져오기
+            function fetchTeams() {
+                fetch("../adm/get_teams.php")
+                    .then(res => res.text()) // JSON 파싱 대신 원문 그대로 보기
+                    .then(txt => {
+                        console.log("🔍 원시 응답 내용:", txt);
+                        try {
+                            const data = JSON.parse(txt);
+                            console.log("✅ JSON 파싱 성공!", data);
+                            teamsData = data;
+                            renderTeams();
+                        } catch (e) {
+                            console.error("❌ JSON 수동 파싱 실패:", e);
+                        }
+                    })
+                    .catch(err => {
+                        console.error("❌ fetch 실패:", err);
+                    });
+            }
+        
+            // 팀 목록 그리기
+            function renderTeams() {
+                let teamContainer = document.getElementById("team");
+                teamContainer.innerHTML = "";
+        
+                let filteredTeams = filterTeams();
+                let paginatedTeams = paginate(filteredTeams);
+        
+                paginatedTeams.forEach(team => {
+                    console.log("📦 team:", team);
+                    let teamDiv = document.createElement("div");
+                    teamDiv.classList.add("team-item");
+                    teamDiv.innerHTML = `
+                        <h1 style="background:url('../img/team/2025/${team.code}.webp'); background-position:top center; background-repeat:no-repeat; background-size:cover;"></h1>
+                        <h2 class="team_h2"><span class="on">${team.name}</span></h2>
+                        <p>${team.members}</p>
+                        <h5>${team.description.substring(0, 45)}...</h5>
+                    `;
+                    teamDiv.addEventListener("click", function() {
+                        openPopup(team.code);
+                    });
+                    teamContainer.appendChild(teamDiv);
+                });
+        
+                renderPagination(filteredTeams.length);
+            }
+        
+            // 검색 필터
+            function filterTeams() {
+                const searchInput = document.getElementById("team-search-input").value.toLowerCase();
+                return teamsData.filter(team => team.name.toLowerCase().includes(searchInput));
+            }
+        
+            // 페이지 나누기
+            function paginate(data) {
+                const start = (currentPage - 1) * itemsPerPage;
+                return data.slice(start, start + itemsPerPage);
+            }
+        
+            // 페이지 번호 출력
+            function renderPagination(totalItems) {
+                const paginationContainer = document.getElementById("team-pagination");
+                paginationContainer.innerHTML = "";
+        
+                const totalPages = Math.ceil(totalItems / itemsPerPage);
+                if (totalPages < 2) return;
+        
+                let pageGroup = Math.ceil(currentPage / maxPageNumbers);
+                let startPage = (pageGroup - 1) * maxPageNumbers + 1;
+                let endPage = Math.min(totalPages, pageGroup * maxPageNumbers);
+        
+                paginationContainer.innerHTML += `
+                    <button onclick="changePage(1)">«</button>
+                    <button onclick="changePage(${Math.max(1, currentPage - 1)})">‹</button>
+                `;
+        
+                for (let i = startPage; i <= endPage; i++) {
+                    paginationContainer.innerHTML += `
+                        <button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>
+                    `;
+                }
+        
+                if (endPage < totalPages) {
+                    paginationContainer.innerHTML += `
+                        <button onclick="changePage(${endPage + 1})">›</button>
+                        <button onclick="changePage(${totalPages})">»</button>
+                    `;
+                }
+            }
+        
+            // 팝업 열기
+            function openPopup(teamCode) {
+                fetch(`../adm/team_detail.php?idx=${teamCode}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById("popup-content-area").innerHTML = html;
+                        document.getElementById("teamPopup").style.display = "flex";
+        
+                        // 팝업 내용 스크롤 초기화
+                        document.querySelector(".popup-content").scrollTop = 0;
+        
+                        // 닫기 버튼
+                        document.querySelector(".popup-close").addEventListener("click", function() {
+                            document.getElementById("teamPopup").style.display = "none";
+                        });
+                    })
+                    .catch(error => console.error("팝업 데이터 불러오기 실패:", error));
+            }
+        
+            // 팝업 바깥 클릭 시 닫기
+            window.addEventListener("click", function(event) {
+                let popup = document.getElementById("teamPopup");
+                if (event.target === popup) {
+                    popup.style.display = "none";
+                }
+            });
+        
+            // 페이지 변경 + 스크롤 이동
+            window.changePage = function(page) {
+                currentPage = page;
+                renderTeams();
+        
+                // 페이지 상단으로 부드럽게 스크롤
+                document.querySelector("#sub_section1").scrollIntoView({ behavior: "smooth" });
+            };
+        
+            // 검색 버튼 클릭
+            document.getElementById("team-search-button").addEventListener("click", function() {
+                currentPage = 1;
+                renderTeams();
+            });
+        
+            // 검색 입력창에서 Enter 키
+            document.getElementById("team-search-input").addEventListener("keyup", function(event) {
+                if (event.key === "Enter") {
+                    currentPage = 1;
+                    renderTeams();
+                }
+            });
+        
+            // 초기 실행
+            fetchTeams();
+        });
+        </script>
+        
+    <!-- footer -->
+    <footer id="footer">
+        <div class="footer_text">
+            <h3>서울거리공연 운영 사무국 <br>
+                ✉ 2025seoulbusking@gmail.com <br><b>※문의시간 : 09시~18시(평일) / 12시~13시(점심시간 제외)</b></h3>
+            <p>서울거리공연 (c)seoulbusking. All rights reserved.</p>
+        </div>
+        <div class="footer_icon">
+            <button onclick="document.location.href='mailto:2025seoulbusking@gmail.com'" class="footer_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+            </button>
+        </div>
+     </footer>
+</body>
+</html>

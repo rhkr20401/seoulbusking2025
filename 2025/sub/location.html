@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2025 서울거리공연 - 구석구석라이브</title>
+        <!-- meta -->
+        <meta name="title" content="2025 서울거리공연 '구석구석라이브'" />
+        <meta name="description" content="2025년 서울거리공연 '구석구석라이브' 공식 홈페이지" />
+        <meta property="og:image" content="https://seoulbusking.com/2025/img/bg.png">
+        <meta property="og:url" content="https://seoulbusking.com">
+        <meta property="og:type" content="website">
+        <link rel="icon" type="image/png" href="https://seoulbusking.com/favicon.ico"/>
+        <!-- css/js -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/GamtanRoadGamtan/GamtanRoadGamtan.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/style_sub.css">
+        <script src="https://kit.fontawesome.com/051ae6ca49.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="../js/js_main.js"></script>
+    </head>
+<body>
+    <div id="header"></div>
+    <script>
+        fetch('../../header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                initSidebar();
+            });
+    
+        function initSidebar() {
+            const toggleBtn = document.querySelector('.navbar_toggleBtn svg');
+            const closeBtn = document.querySelector('.sidebar_closeBtn svg');
+            const sidebar = document.querySelector('.sidebar');
+    
+            if (toggleBtn && closeBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                });
+    
+                closeBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            }
+        }
+    </script>
+
+    <!-- sub_banner -->
+    <section id="sub_banner">
+        <img src="../img/logo.png" class="sub_logo">
+    </section>
+
+    <!-- sub_content -->
+     <section id="sub_section1" class="local wrap">
+        <h1><span>공연장 안내</span></h1>
+		<p style="color:red; text-align:center; margin-top: -1%; margin-bottom: 2%;">※ 공연장소는 추가되거나 변경될 수 있습니다.</p>
+
+        <div class="stage"></div>
+
+		<!-- 검색창 추가 -->
+        <div id="location-search-container">
+            <input type="text" id="location-search-input" placeholder="공연장을 입력하세요">
+            <button id="location-search-button"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <!-- 페이지네이션 추가 -->
+        <div id="location-pagination"></div>
+     </section>
+
+	 <script>
+		document.addEventListener("DOMContentLoaded", function () {
+			let allLocations = [];
+			let currentPage = 1;
+			const itemsPerPage = 6;
+		
+			// DB에서 공연장 데이터 가져오기
+			function fetchLocations() {
+				fetch("../adm/get_location.php")
+					.then(res => res.json())
+					.then(data => {
+						allLocations = data;
+						renderLocations();
+					})
+					.catch(err => console.error("❌ 데이터 오류:", err));
+			}
+		
+			// 공연장 리스트 렌더링
+			function renderLocations() {
+				const stage = document.querySelector(".stage");
+				stage.innerHTML = "";
+		
+				const filtered = filterLocations();
+				const paginated = paginate(filtered);
+		
+				paginated.forEach(location => {
+					const div = document.createElement("div");
+					div.innerHTML = `
+						<h5 style="background:url('../img/stage/2025/${location.number}.webp'); background-position:center; background-repeat:no-repeat; background-size:cover;"></h5>
+						<h6>${location.name}</h6>
+						<p>${location.station_info}</p>
+						<p><i class="fas fa-map-marker-alt"></i>${location.address}</p>
+						<button onclick="window.open('${location.map_link}')">네이버 지도 보기</button>
+					`;
+					stage.appendChild(div);
+				});
+		
+				renderPagination(filtered.length);
+			}
+		
+			// 검색어에 맞는 결과 필터링
+			function filterLocations() {
+				const keyword = document.getElementById("location-search-input").value.toLowerCase();
+				return allLocations.filter(loc => loc.name.toLowerCase().includes(keyword));
+			}
+		
+			// 페이징 처리
+			function paginate(data) {
+				const start = (currentPage - 1) * itemsPerPage;
+				return data.slice(start, start + itemsPerPage);
+			}
+		
+			// 페이지네이션 버튼 생성
+			function renderPagination(totalItems) {
+				const container = document.getElementById("location-pagination");
+				container.innerHTML = "";
+		
+				const totalPages = Math.ceil(totalItems / itemsPerPage);
+		
+				for (let i = 1; i <= totalPages; i++) {
+					const btn = document.createElement("button");
+					btn.textContent = i;
+					if (i === currentPage) btn.classList.add("active");
+		
+					btn.addEventListener("click", () => {
+						currentPage = i;
+						renderLocations();
+		
+						// 👉 스크롤 페이지 위로 이동
+					document.querySelector("#sub_section1").scrollIntoView({ behavior: "smooth" });
+					});
+		
+					container.appendChild(btn);
+				}
+			}
+		
+			// 🔍 검색 버튼 클릭
+			document.getElementById("location-search-button").addEventListener("click", () => {
+				currentPage = 1;
+				renderLocations();
+			});
+		
+			// 🔍 엔터로 검색
+			document.getElementById("location-search-input").addEventListener("keyup", (e) => {
+				if (e.key === "Enter") {
+					currentPage = 1;
+					renderLocations();
+				}
+			});
+		
+			// 처음 실행
+			fetchLocations();
+		});
+		</script>
+		
+		
+		
+		
+
+    <!-- footer -->
+    <footer id="footer">
+        <div class="footer_text">
+            <h3>서울거리공연 운영 사무국 <br>
+              ✉ 2025seoulbusking@gmail.com <br><b>※문의시간 : 09시~18시(평일) / 12시~13시(점심시간 제외)</b></h3>
+            <p>서울거리공연 (c)seoulbusking. All rights reserved.</p>
+        </div>
+        <div class="footer_icon">
+            <button onclick="document.location.href='mailto:2025seoulbusking@gmail.com'" class="footer_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+            </button>
+        </div>
+     </footer>
+
+     
+</body>
+</html>

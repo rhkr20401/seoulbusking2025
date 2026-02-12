@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2025 서울거리공연 - 구석구석라이브</title>
+        <!-- meta -->
+        <meta name="title" content="2025 서울거리공연 '구석구석라이브'" />
+        <meta name="description" content="2025년 서울거리공연 '구석구석라이브' 공식 홈페이지" />
+        <meta property="og:image" content="https://seoulbusking.com/2025/img/bg.png">
+        <meta property="og:url" content="https://seoulbusking.com">
+        <meta property="og:type" content="website">
+        <link rel="icon" type="image/png" href="https://seoulbusking.com/favicon.ico"/>
+        <!-- css/js -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/GamtanRoadGamtan/GamtanRoadGamtan.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/style_sub.css">
+        <script src="https://kit.fontawesome.com/051ae6ca49.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="../js/js_main.js"></script>
+    </head>
+<body>
+    <div id="header"></div>
+    <script>
+        fetch('../../header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                initSidebar();
+            });
+    
+        function initSidebar() {
+            const toggleBtn = document.querySelector('.navbar_toggleBtn svg');
+            const closeBtn = document.querySelector('.sidebar_closeBtn svg');
+            const sidebar = document.querySelector('.sidebar');
+    
+            if (toggleBtn && closeBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                });
+    
+                closeBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            }
+        }
+    </script>
+
+    <!-- sub_banner -->
+    <section id="sub_banner">
+        <img src="../img/logo.png" class="sub_logo">
+    </section>
+
+    <!-- sub_content -->
+     <section id="sub_section1" class="about">
+        <h1><span>2025 서울거리공연 [구석구석 라이브]</span></h1>
+        <h2>
+            일년 내내 발길 닿는 어디든.<br>
+            서울 구석구석에서 만나는<br>
+            거리예술공연
+        </h2>
+        <h3>
+            서울 전역 50곳의 장소에서 진행되는 <b>2025 서울거리공연 구석구석라이브</b>는<br>
+            문화 예술을 통해 시민들에게 일상의 이벤트를 가져다주고,<br>
+            다양한 문화공연 향유 기회를 확대하기 위해<br>
+            150팀의 공연팀과 함께 4월부터 12월까지 총 2,000회의 공연이<br>
+            서울의 다양한 공간에서 진행하게 됩니다.<br><br>
+            주요 관광명소 및 공원, 한강, 지천 등 서울의 열린 공간에서 다양하게 진행되는 거리 공연들을 기대해주세요!
+        </h3>
+     </section>
+
+    <!-- footer -->
+    <footer id="footer">
+        <div class="footer_text">
+            <h3>서울거리공연 운영 사무국 <br>
+                ✉ 2025seoulbusking@gmail.com <br><b>※문의시간 : 09시~18시(평일) / 12시~13시(점심시간 제외)</b></h3>
+            <p>서울거리공연 (c)seoulbusking. All rights reserved.</p>
+        </div>
+        <div class="footer_icon">
+            <button onclick="document.location.href='mailto:2025seoulbusking@gmail.com'" class="footer_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+            </button>
+        </div>
+     </footer>
+
+     
+</body>
+</html>

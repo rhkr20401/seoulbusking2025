@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2025 서울거리공연 - 구석구석라이브</title>
+        <!-- meta -->
+        <meta name="title" content="2025 서울거리공연 '구석구석라이브'" />
+        <meta name="description" content="2025년 서울거리공연 '구석구석라이브' 공식 홈페이지" />
+        <meta property="og:image" content="https://seoulbusking.com/2025/img/bg.png">
+        <meta property="og:url" content="https://seoulbusking.com">
+        <meta property="og:type" content="website">
+        <link rel="icon" type="image/png" href="https://seoulbusking.com/favicon.ico"/>
+        <!-- css/js -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/GamtanRoadGamtan/GamtanRoadGamtan.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/style_sub.css">
+        <script src="https://kit.fontawesome.com/051ae6ca49.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="../js/js_main.js"></script>
+    </head>
+<body>
+    <div id="header"></div>
+    <script>
+        fetch('../../header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                initSidebar();
+            });
+    
+        function initSidebar() {
+            const toggleBtn = document.querySelector('.navbar_toggleBtn svg');
+            const closeBtn = document.querySelector('.sidebar_closeBtn svg');
+            const sidebar = document.querySelector('.sidebar');
+    
+            if (toggleBtn && closeBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                });
+    
+                closeBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            }
+        }
+    </script>
+
+    <!-- sub_banner -->
+    <section id="sub_banner">
+        <img src="../img/logo.png" class="sub_logo">
+    </section>
+
+
+    <section id="sub_section1" class="gallery">
+        <h1><span>2025 구석구석라이브 갤러리</span></h1>
+        <!-- 이미지 리스트 -->
+        <div id="gallery-container" class="gallery-grid"></div>
+        <!-- 페이지 번호 -->
+        <div id="pagination" class="pagination"></div>
+        <!-- 모달 -->
+        <div id="modal" class="modal">
+            <span class="close">&times;</span>
+            <div class="modal-inner">
+                <img id="modal-img" class="modal-content">
+                <p id="modal-caption"></p>
+            </div>
+
+            <div class="modal-nav">
+                <button id="prev"><i class="fa-solid fa-arrow-left"></i></button>
+                <button id="next"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/js_gallery.js"></script>
+    
+
+    <!-- footer -->
+    <footer id="footer">
+        <div class="footer_text">
+            <h3>서울거리공연 운영 사무국 <br>
+                ✉ 2025seoulbusking@gmail.com <br><b>※문의시간 : 09시~18시(평일) / 12시~13시(점심시간 제외)</b></h3>
+            <p>서울거리공연 (c)seoulbusking. All rights reserved.</p>
+        </div>
+        <div class="footer_icon">
+            <button onclick="document.location.href='mailto:2025seoulbusking@gmail.com'" class="footer_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+            </button>
+        </div>
+    </footer>
+
+</body>
+</html>

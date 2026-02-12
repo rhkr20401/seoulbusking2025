@@ -1,0 +1,676 @@
+/**
+ * 공연장 예약 시스템 스타일
+ * 기본 레이아웃, 달력, 예약 버튼 등의 스타일
+ */
+
+/**
+ * 기본 레이아웃 스타일
+ * - 전체 페이지 배경, 섹션 스타일 등 기본 레이아웃 정의
+ */
+body {
+    background-color: #f8f9fa;
+    font-family: 'GamtanRoadGamtan', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#sub_section1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/**
+ * 타이틀 영역 스타일 
+ * - 로고, 제목 등의 상단 영역 스타일 정의
+ */
+.title-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0 0px;
+}
+
+.title-area img {
+    height: 45px;
+    margin-bottom: 10px;
+}
+
+.title-area h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/**
+ * 월 선택 스타일
+ * - 달력 상단의 월 선택 버튼 스타일 정의
+ */
+.month-selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+.month-selector a {
+    padding: 8px 15px;
+    margin: 5px;
+    background: #f5f5f5;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s;
+}
+.month-selector a.active {
+    background: #06b77d;
+    color: white;
+    font-weight: bold;
+}
+.month-selector a:hover {
+    background: #06b77d;
+    color: white;
+}
+
+/**
+ * 일정 상태 메시지 스타일
+ * - 로딩, 빈 일정 표시 등의 스타일 정의
+ */
+.schedule-loading {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: #666;
+}
+.schedule-empty {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: #666;
+}
+
+/**
+ * 장소 정보 스타일
+ * - 선택된 장소의 상세 정보 박스 스타일 정의
+ */
+.location-info {
+    margin: 20px auto;
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    display: none;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    max-width: 80%;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.location-info h3 {
+    margin-bottom: 8px;
+    color: #06b77d;
+    font-weight: bold;
+    font-size: 16px;
+}
+.location-info p {
+    margin: 4px 0;
+}
+.location-info a {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 8px;
+    background: #06b77d;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/**
+ * 시간 슬롯 카드 스타일
+ * - 시간과 버튼을 하나의 카드 형태로 통합하여 한 덩어리 느낌이 나도록 스타일 정의
+ */
+.schedule-time-slot {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding: 10px 10px 8px 10px;
+    background-color: #fafafa;
+    border-radius: 6px;
+    border: 1px solid #eaeaea;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    overflow: hidden;
+}
+
+.schedule-time-slot:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    border-color: #ddd;
+}
+
+/* 마지막 항목의 경계선 유지 */
+.schedule-time-slot:last-child {
+    margin-bottom: 5px;
+}
+
+.schedule-time {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #000;
+    display: inline-block;
+    padding: 0;
+    line-height: 1.2;
+}
+
+/**
+ * 통합 예약 버튼 스타일
+ * - 예약 상태와 버튼을 하나로 통합한 디자인
+ */
+.reserve-btn-integrated {
+    display: inline-block;
+    padding: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+/* 예약 가능 상태 */
+.reserve-available {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 2px;
+    padding: 8px 0 9px;
+}
+
+.reserve-available:hover {
+    background: #06b77d;
+    color: white;
+}
+
+/* 예약됨 상태 */
+.reserve-taken {
+    background: #ffebee;
+    color: #c62828;
+    border-top: 1px solid #e5e5e5;
+    cursor: default;
+    opacity: 0.9;
+    margin-top: 2px;
+    padding: 8px 0 9px;
+}
+
+/* 내 예약 상태 */
+.reserve-mine {
+    background: #e3f2fd;
+    color: #1565c0;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 2px;
+    padding: 8px 0 9px;
+}
+
+.reserve-mine:hover {
+    background: #1565c0;
+    color: white;
+}
+
+/**
+ * 예약 버튼 스타일 (이전 스타일, 호환성 유지)
+ * - 예약하기/취소 버튼 스타일 정의
+ */
+.reserve-btn {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #06b77d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 5px;
+}
+.reserve-btn:hover {
+    background: #048c60;
+}
+.reserve-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+/**
+ * 예약 상태 표시 스타일 (이전 스타일, 호환성 유지)
+ * - 가능/불가능/내 예약 등 상태 표시 스타일
+ */
+.reservation-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-top: 5px;
+}
+.status-available {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+.status-reserved {
+    background: #ffebee;
+    color: #c62828;
+}
+.status-mine {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+/**
+ * 로그인 상태 표시 스타일
+ * - 로그인/비로그인 상태 안내 박스 스타일
+ */
+.login-notice {
+    text-align: center;
+    padding: 0;
+    margin: 10px auto 20px;
+    max-width: 100%;
+    font-size: 14px;
+}
+
+.login-status-text {
+    margin: 0;
+}
+
+.username {
+    font-weight: bold;
+    color: #333;
+}
+
+.login-link, .logout-link {
+    color: #06b77d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link:hover, .logout-link:hover {
+    text-decoration: underline;
+}
+
+/**
+ * 하단 링크 영역 스타일
+ * - 페이지 하단 링크 버튼 스타일
+ */
+.back-link {
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+}
+
+.back-link a {
+    color: #06b77d;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+/**
+ * 연락처 정보 스타일
+ * - 하단 연락처 정보 박스 및 버튼 스타일
+ */
+.contact-info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #555;
+    border: 1px solid #e0e0e0;
+}
+
+.contact-info strong {
+    color: #333;
+    font-weight: bold;
+}
+
+.contact-info a {
+    color: #06b77d;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact-info .contact-buttons {
+    margin-top: 10px;
+}
+
+.contact-info .contact-buttons .contact-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #06b77d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin: 0 5px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.contact-info .contact-buttons .contact-btn:hover {
+    background-color: #048c60;
+}
+
+.contact-info .contact-buttons .contact-btn i {
+    margin-right: 5px;
+}
+
+/**
+ * 사용자 정보 영역 스타일
+ * - 더 이상 사용하지 않음 (login-notice로 대체됨)
+ * - 나중에 완전히 제거 예정
+ */
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.user-info .user-greeting {
+    font-size: 14px;
+}
+
+.user-info .user-actions a {
+    color: #06b77d;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user-info .user-actions a:hover {
+    text-decoration: underline;
+}
+
+/**
+ * 일정 테이블 스타일
+ * - 달력 형태의 일정 테이블 스타일 정의
+ */
+#schedule-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#schedule-table th {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+#schedule-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    background-color: #fff;
+    min-height: 100px;
+}
+
+/* 날짜가 없는 셀 스타일 */
+#schedule-table td.empty-cell {
+    background-color: #f9f9f9;
+    color: #ccc;
+}
+
+/* 일정이 없는 날 스타일 */
+#schedule-table td.empty-day {
+    background-color: #fafafa;
+}
+
+/* 일정이 있는 날 스타일 */
+#schedule-table td.has-schedule {
+    background-color: #fff;
+}
+
+/* 테이블 헤더 요일 스타일 */
+#schedule-table th:first-child {
+    color: #e53935; /* 일요일: 빨간색 */
+}
+
+#schedule-table th:last-child {
+    color: #1e88e5; /* 토요일: 파란색 */
+}
+
+/**
+ * 장소 탭 스타일
+ * - 장소 선택 탭 버튼 스타일 정의
+ */
+.schedule_tab {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.schedule_tab a {
+    padding: 8px 15px;
+    background: #fff;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    min-width: 80px;
+    text-align: center;
+    margin: 3px;
+}
+
+.schedule_tab a.on {
+    background: #06b77d;
+    color: white;
+    font-weight: bold;
+    border-color: #06b77d;
+    box-shadow: 0 2px 4px rgba(6, 183, 125, 0.2);
+}
+
+.schedule_tab a:hover {
+    background: #f0f0f0;
+    border-color: #ccc;
+}
+
+.schedule_tab a.on:hover {
+    background: #048c60;
+    border-color: #048c60;
+}
+
+/**
+ * 장소 탭 컨테이너 스타일
+ * - 장소 탭 제목과 컨테이너 스타일
+ * - 현재는 숨김 처리되어 있음
+ */
+.tab-container {
+    margin-bottom: 25px;
+    /* 숨김 처리 - 필요할 때 아래 주석을 해제하여 다시 표시 가능 */
+    display: none;
+}
+
+.tab-title {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/**
+ * 전체 페이지 레이아웃 스타일
+ * - 페이지 전체 구조를 정의
+ */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding-bottom: 30px;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+/* 장소명 스타일 개선 */
+.place-name {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    color: #06b77d;
+    padding-top: 15px;
+    padding-bottom: 6px;
+    margin: 8px 0 10px 0;
+    border-bottom: 1px dashed #ddd;
+    border-top: 1px solid #000;
+}
+
+/* 과거 일정 상태 */
+.reserve-past {
+    background: #e8e8e8;
+    color: #777;
+    border-top: 1px solid #e0e0e0;
+    cursor: default;
+    opacity: 0.95;
+    margin-top: 2px;
+    padding: 8px 0 9px;
+}
+
+/* 강제 로그아웃 알림 스타일 */
+.forced-logout-alert {
+    font-size: 12px;
+    color: #e65100;
+    background-color: #fff3e0;
+    border-radius: 4px;
+    padding: 5px 8px;
+    margin-top: 5px;
+    border: 1px solid #ffe0b2;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.reservation-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s;
+}
+.reservation-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.reservation-date {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+.reservation-time-place {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.reservation-time {
+    color: #06b77d;
+    font-weight: bold;
+}
+.reservation-place {
+    color: #555;
+}
+.reservation-status {
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.status-approved {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+.status-pending {
+    background-color: #fff8e1;
+    color: #ff8f00;
+}
+.status-canceled {
+    background-color: #ffebee;
+    color: #c62828;
+    opacity: 0.7;
+}
+.reservation-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.cancel-btn {
+    padding: 6px 12px;
+    background-color: #FFC107;
+    color: #7E5700;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.cancel-btn:hover {
+    background-color: #FFD54F;
+}
+.empty-list {
+    text-align: center;
+    padding: 10px;
+    color: #777;
+    font-size: 12px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin: 5px 0;
+    border: 1px dashed #ddd;
+} 

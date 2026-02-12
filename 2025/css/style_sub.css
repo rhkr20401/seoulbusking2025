@@ -1,0 +1,840 @@
+/* sub_banner */
+#sub_banner{
+    position: relative;
+    height: 300px;
+    background: url('../img/sbg.png');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size:cover;
+    margin-top: 0px;
+    text-align: center;
+}
+#sub_banner .sub_logo{
+    height: 200px;
+    margin-top: 40px;
+}
+#sub_section1{
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+    padding: 50px 0;
+    text-align: center;
+}
+h1{
+    margin-top: 0px;
+    display: block;
+    padding: 3% 0;
+}
+h1 span{
+    margin-right: 10px;
+    font-family: "GamtanRoad Gamtan", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    letter-spacing :-1px;
+    font-size: 40px;
+    border-bottom: 0px solid #fae880;
+    box-shadow: inset 0 -20px 0 #fae880;
+}
+
+/* about */
+.about{
+    text-align: center;
+}
+.about h2{
+    font-size: 40px;
+    line-height: 60px;
+    font-family: 'S-CoreDream';
+    font-weight: 500;
+    padding: 0 0 3% 0;
+}
+.about h3{
+    font-size: 20px;
+    line-height: 30px;
+    color: #666666;
+}
+.about h3 b{
+    font-weight: 600;
+    color: #0a9478;
+}
+
+/* busker festival */
+.ov_content{
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+    margin-bottom: 4%;
+}
+.ov_poster{
+    width: 400px;
+}
+.ov_poster img{
+    width: 100%;
+    object-fit: contain;
+    box-shadow: 1px 1px 4px 0px rgba(13, 63, 111, 0.25);
+}
+.ov_text{
+    width: 40%;
+    margin-left: 3%;
+    text-align: left;
+}
+.ov_text hr{
+    background: #0c0c0c;
+    height: 1px;
+    border: 0;
+}
+.ov_text_list{
+    display: flex;
+    margin:3% 0 3% 0;
+    gap: 5%;
+}
+.ov_tit{
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding-left: 2%;
+    width: 20%;
+}
+.ov_detail{
+    font-size: 1.25rem;
+    font-weight: 500;
+    width: 80%;
+}
+
+/* busker_btn */
+.busker_btn_wrap{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+.child{
+    margin: 0 auto;
+    width: 80%;
+}
+.busker_btn_title{
+    font-size: 40px;
+    color: #0a9478;
+    font-weight: 600;
+    padding: 4% 0 3% 0;
+}
+.busker_btn_title2{
+    font-size: 20px;
+    color: #d65454;
+    font-weight: 500;
+    padding: 2% 0 3% 0;
+}
+.busker_btn{
+    display: flex;
+    justify-content: center;
+    gap: 3%;
+}
+.busker_btn a{
+   padding:20px 80px;
+   background:#0a9478;
+   border: 2px solid #0a9478;
+   border-radius:5px;
+}
+.busker_btn a:hover{
+    background-color: #fff;
+    border: 2px solid #0a9478;
+}
+.busker_btn a:hover button{
+    color: #0a9478;
+}
+.busker_btn a button{
+    color: #fff;
+    font-size: 25px;
+    font-weight: 500;
+}
+/* team */
+#team{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+.wrap{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: table;
+}
+#team div{
+    cursor: pointer;
+    width: 280px;
+    height: 500px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+#team div h1{
+    width: 100%;
+    height: 260px;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 0;
+}
+.team_h2{
+    margin-bottom: 10px;
+    margin-top: 30px;
+    text-align: center;
+    line-height: 18px;
+}
+.team_h2 span{
+    font-family: 'S-CoreDream';
+    font-weight: 600;
+    font-size: 20px;
+    background-image: linear-gradient(transparent 60%, #fae880 40%);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 0.3s;
+}
+#team div:hover span.on {
+    background-size: 100% 100%;
+}
+#team div p{
+    font-family: 'S-CoreDream';
+    text-align: center;
+    margin: 0px 20px 0px 20px;
+    line-height: 22px;
+    font-size: 16px;
+}
+#team div h5{
+    font-family: 'S-CoreDream';
+    color: #999999;
+    padding: 10px 30px 10px 30px;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+/* 검색창 스타일 */
+#team-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    width: 380px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+#team-search-input {
+    flex: 1;
+    height: 50px;
+    border: none;
+    padding: 0 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+#team-search-button {
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#team-search-button i {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+/* 페이지네이션 스타일 */
+#team-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+#team-pagination button {
+    background: none;
+    border: 1px solid #ccc;
+    color: #000;
+    padding: 8px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 3px;
+}
+
+#team-pagination button.active {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+}
+
+#team-pagination button:hover {
+    background-color: #ddd;
+}
+
+/* 첫 페이지, 마지막 페이지 버튼 스타일 */
+#team-pagination .first-page, #team-pagination .last-page {
+    font-weight: bold;
+}
+
+#team-pagination .prev-page, #team-pagination .next-page {
+    font-weight: bold;
+}
+
+/* 팝업 기본 스타일 */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* 배경 어두운 효과 */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* 팝업 내부 스타일 */
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 85vh;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    overflow-y: auto; /* 내부 스크롤 가능 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+    -ms-overflow-style: none; /* IE, Edge에서 스크롤바 숨기기 */
+}
+
+/* 크롬, 사파리에서 스크롤바 숨기기 */
+.popup-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* 팀명 스타일 */
+.popup h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0)); 
+    padding: 10px 0;
+}
+
+/* 서브텍스트 (멤버 정보, 장르) */
+.popup p {
+    font-size: 16px;
+    color: #444;
+    margin: 5px 0;
+}
+
+/* 팝업 내부 이미지 스타일 */
+.popup img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+    object-fit: cover;
+}
+
+/* 소개 텍스트 */
+.popup .team-description {
+    font-size: 15px;
+    color: #222;
+    line-height: 1.6;
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* SNS 링크 버튼 */
+.popup a {
+    display: block;
+    margin-top: 15px;
+    padding: 10px;
+    background: #f8f8f8;
+    color: #222;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.popup a:hover {
+    background: #919191;
+    color: #fff;
+}
+
+/* 닫기 버튼 */
+.popup-close{
+    font-size: 15px;
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+    height: 40px;
+    background: #222;
+    color: #f8f8f8;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+.popup-close:hover {
+    background: #919191;
+    color: #fff;
+}
+
+
+/* local */
+.local{
+    padding: 100px 0px 100px 0px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.local .stage{
+    display: grid;
+    gap: 0 3%;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.local .stage div{
+    margin-bottom: 30px;
+    width: 100%;
+    height: 400px;
+    margin-right: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #e0e0e0
+}
+.local .stage div h5{
+    height: 200px;
+    border-radius: 10px;
+}
+.local .stage div h6{
+    font-family: 'S-CoreDream';
+    font-weight: 600;
+    color: #000000;
+    font-size: 17px;
+    margin: 20px 0 10px 0;
+}
+.local .stage div p:nth-child(3){
+    color: #1c3442;
+}
+.local .stage div p {
+    font-family: 'S-CoreDream';
+    font-weight: 500;
+    color: #999999;
+    font-size: 15px;
+    margin: 0px 30px 10px 30px;
+}
+.local .stage div p i {
+    color: #999999;
+    font-size: 15px;
+    margin: 0px 5px 0px 0px;
+}
+.local .stage div button {
+    border: 1px solid #1c3442;
+    color: #1c3442;
+    padding: 0 20px 0 20px;
+    height: 30px;
+    border-radius: 30px;
+    font-size: 12px;
+}
+.local .stage div button:hover{
+    color: #fff;
+    background-color: #1c3442;
+}
+/* local 검색창 */
+#location-search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    width: 380px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+#location-search-input {
+    flex: 1;
+    height: 50px;
+    border: none;
+    padding: 0 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+#location-search-button {
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#location-search-button i {
+    color: #ffffff;
+    font-size: 20px;
+}
+/* local 페이지네이션 */
+#location-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+#location-pagination button {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#location-pagination button.active {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* schedule */
+.schedule_tab{
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+    display: block;
+}
+.schedule_tab a{
+    margin: 0 30px 0 30px;
+    font-weight: 700;
+    line-height: 40px;
+}
+.schedule_tab a:hover{
+    border-bottom: 1px solid #1c3442;
+}
+.schedule_tab a.on{
+    color: #1c3442;
+    border-bottom: 1px solid #1c3442;
+    padding-bottom: 5px;
+}
+
+/* ===== 새 갤러리 그리드 스타일 ===== */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03);
+}
+
+/* ===== 페이지네이션 ===== */
+.pagination {
+    text-align: center;
+    margin: 40px 0 20px 0;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0 4px;
+    font-size: 16px;
+}
+
+.page-btn.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+/* ===== 모달 ===== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    max-width: 85%;
+    max-height: 80vh;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.modal-nav button {
+    background: rgba(0,0,0,0.6);
+    border: none;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    padding: 12px 18px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.modal-nav button:hover {
+    background: rgba(255,255,255,0.2);
+}
+#modal-caption {
+    margin-top: 15px;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+
+
+@media screen and (max-width:1024px) {
+    /* busker */
+    .ov_content{
+        display: block;
+        margin-bottom: 4%;
+    }
+    .ov_poster{
+        width: 500px;
+        margin: 0 auto;
+    }
+    .ov_text {
+        margin: 10% auto;
+        width: 80%;
+    }
+    .busker_btn_wrap{
+        width: 100%;
+    }
+    .busker_btn a {
+        padding: 20px 40px;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width:768px) {
+    /* sub_banner */
+    #sub_banner{
+        height: 200px;
+    }
+    #sub_banner .sub_logo{
+        height: 120px;
+        margin-top: 50px;
+    }
+    h1 span{
+        font-size: 35px;
+    }
+    /* about */
+    .about{
+        padding: 50px 0 100px 0;
+    }
+    
+    .about h2{
+        font-size: 28px;
+    }
+    .about h3{
+        font-size: 18px;
+    }
+    /* busker */
+    .ov_content{
+        display: block;
+        margin-bottom: 4%;
+    }
+    .ov_text {
+        margin: 10% auto;
+        width: 90%;
+    }
+    .busker_btn_title {
+        font-size: 35px;
+    }
+    .busker_btn a {
+        padding: 20px 10px;
+    }
+    /* team */
+    #team{
+        grid-template-columns: 1fr 1fr;
+    }
+    /* schedule */
+    .schedule table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width:600px) {
+    /* team */
+    #team{
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+    }
+    #team div{
+        height: 350px;
+        width: 180px;
+        margin-right: 10px;
+    }
+    #team div h1{
+        height: 150px;
+    }
+    .team_h2 span{
+        font-size: 16px;
+    }
+    #team div p{
+        font-size: 14px;
+        line-height: 18px;
+    }
+    #team div h5{
+        font-size: 12px;
+        line-height: 16px;
+    }
+    /* local */
+    .local .stage{
+        grid-template-columns : 1fr 1fr;
+        gap: 10px;
+    }
+    .local .stage div{
+        height: 100%;
+        margin-right: 10px;
+    }
+    .local .stage div h5{
+        height: 150px;
+    }
+    .local .stage div h6{
+        font-size: 15px;
+    }
+    .local .stage div p {
+        font-size: 13px;
+    }
+    /* gallery */
+    .accordion{
+        width: 100%;
+        font-size: 14px;
+    }
+    .panel{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1%;
+    }
+    .panel img{
+        width: 100%;
+        margin: 0;
+        height: 100%;
+    }
+    .modal-nav button{
+        font-size: 16px;
+    }
+    .modal-nav #prev{
+        left: 3%;
+    }
+    .modal-nav #next{
+        right: 3%;
+    }
+}
+@media screen and (max-width:425px) {
+    /* sub_banner */
+    #sub_banner{
+        height: 150px;
+    }
+    #sub_banner .sub_logo{
+        height: 100px;
+        margin-top: 30px;
+    }
+    h1 span{
+        font-size: 28px;
+    }
+    /* section2 */
+    .about{
+        padding: 50px 0 50px 0;
+    }
+    
+    .about h2{
+        font-size: 20px;
+        line-height: 40px;
+    }
+    .about h3{
+        font-size: 15px;
+        width: 95%;
+        margin: 0 auto;
+    }
+    /* busker */
+    .ov_poster{
+        width: 300px;
+    }
+    .ov_tit{
+        font-size: 1.1rem;
+    }
+    .ov_detail{
+        font-size: 1rem;
+    }
+    .busker_btn_title {
+        font-size: 20px;
+    }
+    .busker_btn_title2 {
+        font-size: 16px;
+        padding:-3% 0 2% 0;
+    }
+    .busker_btn {
+        display: grid;
+        margin-bottom: 10%;
+    }
+    .busker_btn a{
+        padding: 10px 40px;
+        margin-top: 2%;
+    }
+    .busker_btn a button{
+        font-size: 18px;
+    }
+}
